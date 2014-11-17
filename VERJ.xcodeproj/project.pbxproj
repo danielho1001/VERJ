@@ -9,11 +9,40 @@
 /* Begin PBXBuildFile section */
 		D40F5FE51A18597B00E5D3BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F5FE41A18597B00E5D3BD /* main.m */; };
 		D40F5FE81A18597B00E5D3BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F5FE71A18597B00E5D3BD /* AppDelegate.m */; };
-		D40F5FEB1A18597B00E5D3BD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F5FEA1A18597B00E5D3BD /* ViewController.m */; };
-		D40F5FEE1A18597B00E5D3BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40F5FEC1A18597B00E5D3BD /* Main.storyboard */; };
-		D40F5FF01A18597B00E5D3BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40F5FEF1A18597B00E5D3BD /* Images.xcassets */; };
-		D40F5FF31A18597B00E5D3BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40F5FF11A18597B00E5D3BD /* LaunchScreen.xib */; };
 		D40F5FFF1A18597B00E5D3BD /* VERJTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F5FFE1A18597B00E5D3BD /* VERJTests.m */; };
+		D40F600A1A1859A700E5D3BD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F60091A1859A700E5D3BD /* Parse.framework */; };
+		D40F600C1A1859AE00E5D3BD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F600B1A1859AE00E5D3BD /* Bolts.framework */; };
+		D40F600E1A1859DE00E5D3BD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F600D1A1859DE00E5D3BD /* Accounts.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		D40F60101A185A1000E5D3BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F600F1A185A1000E5D3BD /* AudioToolbox.framework */; };
+		D40F60121A185A1700E5D3BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F60111A185A1700E5D3BD /* CFNetwork.framework */; };
+		D40F60141A185A1E00E5D3BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F60131A185A1E00E5D3BD /* CoreGraphics.framework */; };
+		D40F60161A185A2500E5D3BD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F60151A185A2500E5D3BD /* CoreLocation.framework */; };
+		D40F60181A185A2D00E5D3BD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F60171A185A2D00E5D3BD /* libz.dylib */; };
+		D40F601A1A185A3300E5D3BD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F60191A185A3300E5D3BD /* MobileCoreServices.framework */; };
+		D40F601C1A185A3900E5D3BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F601B1A185A3900E5D3BD /* QuartzCore.framework */; };
+		D40F601E1A185A3F00E5D3BD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F601D1A185A3F00E5D3BD /* Security.framework */; };
+		D40F60201A185A4500E5D3BD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F601F1A185A4500E5D3BD /* Social.framework */; };
+		D40F60221A185A4B00E5D3BD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F60211A185A4B00E5D3BD /* StoreKit.framework */; };
+		D40F60241A185A5000E5D3BD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F60231A185A5000E5D3BD /* SystemConfiguration.framework */; };
+		D40F65111A1860E700E5D3BD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F65101A1860E700E5D3BD /* LoginViewController.m */; };
+		D40F65151A18660000E5D3BD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F65141A18660000E5D3BD /* FacebookSDK.framework */; };
+		D40F65171A18668700E5D3BD /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F65161A18668700E5D3BD /* ParseFacebookUtils.framework */; };
+		D40F651C1A186D0E00E5D3BD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D40F651B1A186D0E00E5D3BD /* Default.png */; };
+		D40F651F1A186E3000E5D3BD /* ProjectsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F651E1A186E3000E5D3BD /* ProjectsTableViewController.m */; };
+		D40F65251A187C8800E5D3BD /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40F65241A187C8800E5D3BD /* ParseUI.framework */; };
+		D40F65281A187D9E00E5D3BD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F65271A187D9E00E5D3BD /* Constants.m */; };
+		D40F65301A1888A800E5D3BD /* NewProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F652F1A1888A800E5D3BD /* NewProjectCell.m */; };
+		D40F65321A188A7100E5D3BD /* CreateProjectButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D40F65311A188A7100E5D3BD /* CreateProjectButton.png */; };
+		D40F65351A188FB300E5D3BD /* IdeasTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F65341A188FB300E5D3BD /* IdeasTableViewController.m */; };
+		D40F65381A1890D800E5D3BD /* CreateProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F65371A1890D800E5D3BD /* CreateProjectViewController.m */; };
+		D40F653B1A18A3E500E5D3BD /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F653A1A18A3E500E5D3BD /* ProjectCell.m */; };
+		D4A0E2221A193A3100A1825F /* IdeaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E2211A193A3100A1825F /* IdeaCell.m */; };
+		D4A0E2261A193F1800A1825F /* CreateIdeaButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E2251A193F1800A1825F /* CreateIdeaButtonItem.m */; };
+		D4A0E2281A193F7900A1825F /* CreateIdeaButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0E2271A193F7900A1825F /* CreateIdeaButton.png */; };
+		D4A0E22D1A1948BD00A1825F /* NewIdeaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E22C1A1948BD00A1825F /* NewIdeaViewController.m */; };
+		D4A0E2301A194B9700A1825F /* IdeaContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E22F1A194B9700A1825F /* IdeaContentView.m */; };
+		D4A0E2331A199BB400A1825F /* InviteFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E2321A199BB400A1825F /* InviteFriendsTableViewController.m */; };
+		D4A0E2361A199EF500A1825F /* VerjCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E2351A199EF500A1825F /* VerjCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +61,55 @@
 		D40F5FE41A18597B00E5D3BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D40F5FE61A18597B00E5D3BD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D40F5FE71A18597B00E5D3BD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D40F5FE91A18597B00E5D3BD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D40F5FEA1A18597B00E5D3BD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D40F5FED1A18597B00E5D3BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D40F5FEF1A18597B00E5D3BD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D40F5FF21A18597B00E5D3BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D40F5FF81A18597B00E5D3BD /* VERJTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VERJTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40F5FFD1A18597B00E5D3BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D40F5FFE1A18597B00E5D3BD /* VERJTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VERJTests.m; sourceTree = "<group>"; };
+		D40F60091A1859A700E5D3BD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		D40F600B1A1859AE00E5D3BD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		D40F600D1A1859DE00E5D3BD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D40F600F1A185A1000E5D3BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D40F60111A185A1700E5D3BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D40F60131A185A1E00E5D3BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D40F60151A185A2500E5D3BD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D40F60171A185A2D00E5D3BD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D40F60191A185A3300E5D3BD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D40F601B1A185A3900E5D3BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D40F601D1A185A3F00E5D3BD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D40F601F1A185A4500E5D3BD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		D40F60211A185A4B00E5D3BD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		D40F60231A185A5000E5D3BD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D40F650F1A1860E700E5D3BD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		D40F65101A1860E700E5D3BD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		D40F65141A18660000E5D3BD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		D40F65161A18668700E5D3BD /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		D40F651B1A186D0E00E5D3BD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D40F651D1A186E3000E5D3BD /* ProjectsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsTableViewController.h; sourceTree = "<group>"; };
+		D40F651E1A186E3000E5D3BD /* ProjectsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsTableViewController.m; sourceTree = "<group>"; };
+		D40F65241A187C8800E5D3BD /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		D40F65261A187D9E00E5D3BD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D40F65271A187D9E00E5D3BD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		D40F652E1A1888A800E5D3BD /* NewProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProjectCell.h; sourceTree = "<group>"; };
+		D40F652F1A1888A800E5D3BD /* NewProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProjectCell.m; sourceTree = "<group>"; };
+		D40F65311A188A7100E5D3BD /* CreateProjectButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CreateProjectButton.png; sourceTree = "<group>"; };
+		D40F65331A188FB300E5D3BD /* IdeasTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdeasTableViewController.h; sourceTree = "<group>"; };
+		D40F65341A188FB300E5D3BD /* IdeasTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeasTableViewController.m; sourceTree = "<group>"; };
+		D40F65361A1890D800E5D3BD /* CreateProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateProjectViewController.h; sourceTree = "<group>"; };
+		D40F65371A1890D800E5D3BD /* CreateProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateProjectViewController.m; sourceTree = "<group>"; };
+		D40F65391A18A3E500E5D3BD /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
+		D40F653A1A18A3E500E5D3BD /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
+		D4A0E2201A193A3100A1825F /* IdeaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdeaCell.h; sourceTree = "<group>"; };
+		D4A0E2211A193A3100A1825F /* IdeaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaCell.m; sourceTree = "<group>"; };
+		D4A0E2241A193F1800A1825F /* CreateIdeaButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateIdeaButtonItem.h; sourceTree = "<group>"; };
+		D4A0E2251A193F1800A1825F /* CreateIdeaButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateIdeaButtonItem.m; sourceTree = "<group>"; };
+		D4A0E2271A193F7900A1825F /* CreateIdeaButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CreateIdeaButton.png; sourceTree = "<group>"; };
+		D4A0E22B1A1948BD00A1825F /* NewIdeaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewIdeaViewController.h; sourceTree = "<group>"; };
+		D4A0E22C1A1948BD00A1825F /* NewIdeaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewIdeaViewController.m; sourceTree = "<group>"; };
+		D4A0E22E1A194B9700A1825F /* IdeaContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdeaContentView.h; sourceTree = "<group>"; };
+		D4A0E22F1A194B9700A1825F /* IdeaContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaContentView.m; sourceTree = "<group>"; };
+		D4A0E2311A199BB400A1825F /* InviteFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsTableViewController.h; sourceTree = "<group>"; };
+		D4A0E2321A199BB400A1825F /* InviteFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsTableViewController.m; sourceTree = "<group>"; };
+		D4A0E2341A199EF500A1825F /* VerjCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerjCache.h; sourceTree = "<group>"; };
+		D4A0E2351A199EF500A1825F /* VerjCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerjCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +117,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40F60241A185A5000E5D3BD /* SystemConfiguration.framework in Frameworks */,
+				D40F60221A185A4B00E5D3BD /* StoreKit.framework in Frameworks */,
+				D40F60201A185A4500E5D3BD /* Social.framework in Frameworks */,
+				D40F601E1A185A3F00E5D3BD /* Security.framework in Frameworks */,
+				D40F601C1A185A3900E5D3BD /* QuartzCore.framework in Frameworks */,
+				D40F601A1A185A3300E5D3BD /* MobileCoreServices.framework in Frameworks */,
+				D40F60181A185A2D00E5D3BD /* libz.dylib in Frameworks */,
+				D40F60161A185A2500E5D3BD /* CoreLocation.framework in Frameworks */,
+				D40F60141A185A1E00E5D3BD /* CoreGraphics.framework in Frameworks */,
+				D40F65251A187C8800E5D3BD /* ParseUI.framework in Frameworks */,
+				D40F60121A185A1700E5D3BD /* CFNetwork.framework in Frameworks */,
+				D40F60101A185A1000E5D3BD /* AudioToolbox.framework in Frameworks */,
+				D40F600E1A1859DE00E5D3BD /* Accounts.framework in Frameworks */,
+				D40F65151A18660000E5D3BD /* FacebookSDK.framework in Frameworks */,
+				D40F600A1A1859A700E5D3BD /* Parse.framework in Frameworks */,
+				D40F65171A18668700E5D3BD /* ParseFacebookUtils.framework in Frameworks */,
+				D40F600C1A1859AE00E5D3BD /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,13 +168,16 @@
 		D40F5FE11A18597B00E5D3BD /* VERJ */ = {
 			isa = PBXGroup;
 			children = (
+				D40F65291A18839000E5D3BD /* Views */,
+				D40F652A1A18839600E5D3BD /* Controllers */,
 				D40F5FE61A18597B00E5D3BD /* AppDelegate.h */,
 				D40F5FE71A18597B00E5D3BD /* AppDelegate.m */,
-				D40F5FE91A18597B00E5D3BD /* ViewController.h */,
-				D40F5FEA1A18597B00E5D3BD /* ViewController.m */,
-				D40F5FEC1A18597B00E5D3BD /* Main.storyboard */,
-				D40F5FEF1A18597B00E5D3BD /* Images.xcassets */,
-				D40F5FF11A18597B00E5D3BD /* LaunchScreen.xib */,
+				D40F65261A187D9E00E5D3BD /* Constants.h */,
+				D40F65271A187D9E00E5D3BD /* Constants.m */,
+				D4A0E2341A199EF500A1825F /* VerjCache.h */,
+				D4A0E2351A199EF500A1825F /* VerjCache.m */,
+				D40F651A1A186CED00E5D3BD /* Resources */,
+				D40F60081A18598A00E5D3BD /* Frameworks */,
 				D40F5FE21A18597B00E5D3BD /* Supporting Files */,
 			);
 			path = VERJ;
@@ -117,6 +207,100 @@
 				D40F5FFD1A18597B00E5D3BD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D40F60081A18598A00E5D3BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D40F65241A187C8800E5D3BD /* ParseUI.framework */,
+				D40F65161A18668700E5D3BD /* ParseFacebookUtils.framework */,
+				D40F65141A18660000E5D3BD /* FacebookSDK.framework */,
+				D40F60231A185A5000E5D3BD /* SystemConfiguration.framework */,
+				D40F60211A185A4B00E5D3BD /* StoreKit.framework */,
+				D40F601F1A185A4500E5D3BD /* Social.framework */,
+				D40F601D1A185A3F00E5D3BD /* Security.framework */,
+				D40F601B1A185A3900E5D3BD /* QuartzCore.framework */,
+				D40F60191A185A3300E5D3BD /* MobileCoreServices.framework */,
+				D40F60171A185A2D00E5D3BD /* libz.dylib */,
+				D40F60151A185A2500E5D3BD /* CoreLocation.framework */,
+				D40F60131A185A1E00E5D3BD /* CoreGraphics.framework */,
+				D40F60111A185A1700E5D3BD /* CFNetwork.framework */,
+				D40F600F1A185A1000E5D3BD /* AudioToolbox.framework */,
+				D40F600D1A1859DE00E5D3BD /* Accounts.framework */,
+				D40F600B1A1859AE00E5D3BD /* Bolts.framework */,
+				D40F60091A1859A700E5D3BD /* Parse.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D40F651A1A186CED00E5D3BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4A0E2271A193F7900A1825F /* CreateIdeaButton.png */,
+				D40F65311A188A7100E5D3BD /* CreateProjectButton.png */,
+				D40F651B1A186D0E00E5D3BD /* Default.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D40F65291A18839000E5D3BD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4A0E2231A193EE400A1825F /* IdeasPage */,
+				D4A0E21F1A19393E00A1825F /* ProjectsPage */,
+				D4A0E22E1A194B9700A1825F /* IdeaContentView.h */,
+				D4A0E22F1A194B9700A1825F /* IdeaContentView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D40F652A1A18839600E5D3BD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4A0E21E1A192E4F00A1825F /* NewProject */,
+				D40F650F1A1860E700E5D3BD /* LoginViewController.h */,
+				D40F65101A1860E700E5D3BD /* LoginViewController.m */,
+				D40F651D1A186E3000E5D3BD /* ProjectsTableViewController.h */,
+				D40F651E1A186E3000E5D3BD /* ProjectsTableViewController.m */,
+				D40F65331A188FB300E5D3BD /* IdeasTableViewController.h */,
+				D40F65341A188FB300E5D3BD /* IdeasTableViewController.m */,
+				D4A0E22B1A1948BD00A1825F /* NewIdeaViewController.h */,
+				D4A0E22C1A1948BD00A1825F /* NewIdeaViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D4A0E21E1A192E4F00A1825F /* NewProject */ = {
+			isa = PBXGroup;
+			children = (
+				D40F65361A1890D800E5D3BD /* CreateProjectViewController.h */,
+				D40F65371A1890D800E5D3BD /* CreateProjectViewController.m */,
+				D4A0E2311A199BB400A1825F /* InviteFriendsTableViewController.h */,
+				D4A0E2321A199BB400A1825F /* InviteFriendsTableViewController.m */,
+			);
+			name = NewProject;
+			sourceTree = "<group>";
+		};
+		D4A0E21F1A19393E00A1825F /* ProjectsPage */ = {
+			isa = PBXGroup;
+			children = (
+				D40F652E1A1888A800E5D3BD /* NewProjectCell.h */,
+				D40F652F1A1888A800E5D3BD /* NewProjectCell.m */,
+				D40F65391A18A3E500E5D3BD /* ProjectCell.h */,
+				D40F653A1A18A3E500E5D3BD /* ProjectCell.m */,
+			);
+			name = ProjectsPage;
+			sourceTree = "<group>";
+		};
+		D4A0E2231A193EE400A1825F /* IdeasPage */ = {
+			isa = PBXGroup;
+			children = (
+				D4A0E2241A193F1800A1825F /* CreateIdeaButtonItem.h */,
+				D4A0E2251A193F1800A1825F /* CreateIdeaButtonItem.m */,
+				D4A0E2201A193A3100A1825F /* IdeaCell.h */,
+				D4A0E2211A193A3100A1825F /* IdeaCell.m */,
+			);
+			name = IdeasPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +366,7 @@
 			knownRegions = (
 				en,
 				Base,
+				he,
 			);
 			mainGroup = D40F5FD61A18597B00E5D3BD;
 			productRefGroup = D40F5FE01A18597B00E5D3BD /* Products */;
@@ -199,9 +384,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40F5FEE1A18597B00E5D3BD /* Main.storyboard in Resources */,
-				D40F5FF31A18597B00E5D3BD /* LaunchScreen.xib in Resources */,
-				D40F5FF01A18597B00E5D3BD /* Images.xcassets in Resources */,
+				D4A0E2281A193F7900A1825F /* CreateIdeaButton.png in Resources */,
+				D40F65321A188A7100E5D3BD /* CreateProjectButton.png in Resources */,
+				D40F651C1A186D0E00E5D3BD /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,8 +404,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40F5FEB1A18597B00E5D3BD /* ViewController.m in Sources */,
+				D40F65281A187D9E00E5D3BD /* Constants.m in Sources */,
+				D40F65301A1888A800E5D3BD /* NewProjectCell.m in Sources */,
+				D4A0E22D1A1948BD00A1825F /* NewIdeaViewController.m in Sources */,
+				D4A0E2221A193A3100A1825F /* IdeaCell.m in Sources */,
+				D4A0E2261A193F1800A1825F /* CreateIdeaButtonItem.m in Sources */,
+				D40F65381A1890D800E5D3BD /* CreateProjectViewController.m in Sources */,
+				D40F65351A188FB300E5D3BD /* IdeasTableViewController.m in Sources */,
 				D40F5FE81A18597B00E5D3BD /* AppDelegate.m in Sources */,
+				D4A0E2361A199EF500A1825F /* VerjCache.m in Sources */,
+				D4A0E2301A194B9700A1825F /* IdeaContentView.m in Sources */,
+				D40F653B1A18A3E500E5D3BD /* ProjectCell.m in Sources */,
+				D40F651F1A186E3000E5D3BD /* ProjectsTableViewController.m in Sources */,
+				D40F65111A1860E700E5D3BD /* LoginViewController.m in Sources */,
+				D4A0E2331A199BB400A1825F /* InviteFriendsTableViewController.m in Sources */,
 				D40F5FE51A18597B00E5D3BD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,25 +439,6 @@
 			targetProxy = D40F5FF91A18597B00E5D3BD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D40F5FEC1A18597B00E5D3BD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D40F5FED1A18597B00E5D3BD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D40F5FF11A18597B00E5D3BD /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D40F5FF21A18597B00E5D3BD /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D40F60001A18597B00E5D3BD /* Debug */ = {
@@ -343,6 +521,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VERJ",
+					"$(PROJECT_DIR)/VERJ/FacebookSDK",
+					"$(PROJECT_DIR)/VERJ/FacebookSDK/FBAudienceNetwork",
+					/Users/danielho/Documents/FacebookSDK,
+					/Users/danielho/Documents/FacebookSDK/FBAudienceNetwork,
+				);
 				INFOPLIST_FILE = VERJ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -353,6 +539,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VERJ",
+					"$(PROJECT_DIR)/VERJ/FacebookSDK",
+					"$(PROJECT_DIR)/VERJ/FacebookSDK/FBAudienceNetwork",
+					/Users/danielho/Documents/FacebookSDK,
+					/Users/danielho/Documents/FacebookSDK/FBAudienceNetwork,
+				);
 				INFOPLIST_FILE = VERJ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,6 +606,7 @@
 				D40F60041A18597B00E5D3BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D40F60051A18597B00E5D3BD /* Build configuration list for PBXNativeTarget "VERJTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +615,7 @@
 				D40F60071A18597B00E5D3BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
