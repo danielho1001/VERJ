@@ -22,7 +22,7 @@
 - (NSArray *)scoreForIdea:(PFObject *)idea;
 - (NSArray *)votersForIdea:(PFObject *)idea;
 - (NSArray *)contributorsForProject:(PFObject *)project;
-- (void)setIdeaIsVotedByCurrentUser:(PFObject *)photo voted:(BOOL)voted;
+- (void)setIdeaIsVotedByCurrentUser:(PFObject *)idea up:(BOOL)voted;
 - (BOOL)isIdeaVotedByCurrentUser:(PFObject *)idea;
 - (void)incrementScoreCountForIdea:(PFObject *)idea;
 - (void)decrementScoreCountForIdea:(PFObject *)idea;
@@ -31,6 +31,9 @@
 
 - (void)setAttributesForUser:(PFUser *)user projectCount:(NSNumber *)count;
 - (NSDictionary *)attributesForUser:(PFUser *)user;
+- (BOOL)projectStatusForUser:(PFUser *)user andProject:(PFObject *)project;
+- (void)setProjectStatus:(BOOL)add forUser:(PFUser *)user andProject:(PFObject *)project;
+
 - (NSNumber *)projectCountForUser:(PFUser *)user;
 - (void)setProjectCount:(NSNumber *)count user:(PFUser *)user;
 

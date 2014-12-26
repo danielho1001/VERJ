@@ -10,7 +10,7 @@
 
 @interface IdeaContentView : UIView
 
-@property (nonatomic, strong) UITextView *ideaContentTextView;
+@property (nonatomic, strong) UITextView *textView;
 
 + (CGRect)rectForView;
 

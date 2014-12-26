@@ -21,14 +21,15 @@ extern NSString *const ActivityTypeKey;
 extern NSString *const ActivityFromUserKey;
 extern NSString *const ActivityToUserKey;
 extern NSString *const ActivityContentKey;
-extern NSString *const ActivityProjectKey;
-extern NSString *const ActivityIdeaKey;
+extern NSString *const ActivityToProjectKey;
+extern NSString *const ActivityToIdeaKey;
 // Type Values
 extern NSString *const ActivityTypeProjectAccepted;
 extern NSString *const ActivityTypeProjectCreated;
 extern NSString *const ActivityTypeIdeaCreated;
 extern NSString *const ActivityTypeJoined;
-
+extern NSString *const ActivityTypeAddFriendToProject;
+extern NSString *const ActivityTypeIdeaVote;
 
 #pragma mark - Project
 // Class Key
@@ -37,8 +38,6 @@ extern NSString *const ProjectClassKey;
 extern NSString *const ProjectUserKey;
 extern NSString *const ProjectNameKey;
 extern NSString *const ProjectParticipantsKey;
-
-
 
 #pragma mark - Idea
 // Class Key
@@ -58,6 +57,7 @@ extern NSString *const IdeaTypePhoto;
 extern NSString *const UserDisplayNameKey;
 extern NSString *const UserFacebookIDKey;
 extern NSString *const UserPhotoIDKey;
+extern NSString *const UserEmailKey;
 extern NSString *const UserFacebookFriendsKey;
 
 #pragma mark - Cached Project Attributes
@@ -65,7 +65,7 @@ extern NSString *const UserFacebookFriendsKey;
 extern NSString *const ProjectAttributesIdeaCountKey;
 extern NSString *const ProjectAttributesContributorsKey;
 
-#pragma mark - Cached Photo Attributes
+#pragma mark - Cached Idea Attributes
 // keys
 extern NSString *const IdeaAttributesIsVotedByCurrentUserKey;
 extern NSString *const IdeaAttributesIsVotedUpByCurrentUserKey;
@@ -78,6 +78,8 @@ extern NSString *const IdeaAttributesScoreCountKey;
 // keys
 extern NSString *const UserAttributesIdeaCountKey;
 extern NSString *const UserAttributesProjectCountKey;
+extern NSString *const UserAttributesIsAddedByCurrentUserKey;
+
 
 
 

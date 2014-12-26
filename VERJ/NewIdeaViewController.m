@@ -8,7 +8,9 @@
 
 #import "NewIdeaViewController.h"
 #import "IdeaContentView.h"
+#import "BackButton.h"
 #import "Constants.h"
+#import "VerjUtility.h"
 
 @interface NewIdeaViewController()
 @property (nonatomic, strong) UITextView *ideaContentTextView;
@@ -41,15 +43,20 @@
     CGRect ideaContentRect = [IdeaContentView rectForView];
     
     IdeaContentView *ideaContentView = [[IdeaContentView alloc] initWithFrame:ideaContentRect];
-    self.ideaContentTextView = ideaContentView.ideaContentTextView;
+    self.ideaContentTextView = ideaContentView.textView;
     self.ideaContentTextView.delegate = self;
+    [self.view addSubview:ideaContentView];
     [self.ideaContentTextView becomeFirstResponder];
-    [self.view addSubview:ideaContentTextView];
     
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(newIdea:)];
     [swipe setDirection:(UISwipeGestureRecognizerDirectionUp)];
     [self.ideaContentTextView addGestureRecognizer:swipe];
     
+    self.navigationItem.title = [self.project objectForKey:ProjectNameKey];
+    
+    self.navigationItem.leftBarButtonItem = [[BackButton alloc] initWithTarget:self action:@selector(backButtonAction:) withImageName:@"converge.png"];
+    
+    [self.navigationController.navigationBar setBarTintColor:[VerjUtility getVerjOrangeColor]];
 }
 
 #pragma mark - UITextViewDelegate
@@ -90,7 +97,7 @@
                 // create and save photo caption
                 PFObject *ideaCreated = [PFObject objectWithClassName:ActivityClassKey];
                 [ideaCreated setObject:ActivityTypeIdeaCreated forKey:ActivityTypeKey];
-                [ideaCreated setObject:self.project forKey:ActivityProjectKey];
+                [ideaCreated setObject:self.project forKey:ActivityToProjectKey];
                 [ideaCreated setObject:[PFUser currentUser] forKey:ActivityFromUserKey];
                 
                 //                PFRelation *invitedUsers = [projectCreated relationForKey:ActivityToUserKey];
@@ -112,8 +119,14 @@
             }
             [[UIApplication sharedApplication] endBackgroundTask:self.ideaPostBackgroundTaskId];
         }];
-
     }
+}
+
+#pragma marks - ()
+
+-(void) backButtonAction:(id)sender {
+    [self.navigationController.navigationBar setBarTintColor:[VerjUtility getDefaultNavBarColor]];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

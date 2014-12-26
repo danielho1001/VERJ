@@ -7,6 +7,13 @@
 //
 
 #import "NewProjectCell.h"
+#import "VerjUtility.h"
+
+@interface NewProjectCell ()
+
+@property (nonatomic, strong) UIImageView *plusImage;
+
+@end
 
 @implementation NewProjectCell
 @synthesize createProjectButton;
@@ -22,8 +29,12 @@
         self.clipsToBounds = NO;
         
         self.textLabel.text = @"New Project";
+        self.textLabel.textColor = [UIColor whiteColor];
         
-        self.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:102.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
+        self.backgroundColor = [VerjUtility getVerjOrangeColor];
+        
+        self.plusImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"plus.png"]];
+        [self addSubview:self.plusImage];
         
 //        self.createProjectButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //        self.createProjectButton.frame = CGRectMake(20.0f, 0.0f, 280.0f, 280.0f);
@@ -38,7 +49,9 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-//    self.createProjectButton.frame = CGRectMake( 20.0f, 0.0f, 280.0f, 280.0f);
+    
+    
+    [self.plusImage setFrame:CGRectMake( self.frame.size.width - 60, (self.frame.size.height - 40)/2, 40.0f, 40.0f)];
 }
 
 

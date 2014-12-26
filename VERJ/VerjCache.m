@@ -107,7 +107,7 @@
     return [NSArray array];
 }
 
-- (void)setIdeaIsVotedByCurrentUser:(PFObject *)idea voted:(BOOL)voted {
+- (void)setIdeaIsVotedByCurrentUser:(PFObject *)idea up:(BOOL)voted {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForIdea:idea]];
     [attributes setObject:[NSNumber numberWithBool:voted] forKey:IdeaAttributesIsVotedByCurrentUserKey];
     [self setAttributes:attributes forIdea:idea];
@@ -162,6 +162,30 @@
 - (NSDictionary *)attributesForUser:(PFUser *)user {
     NSString *key = [self keyForUser:user];
     return [self.cache objectForKey:key];
+}
+
+- (BOOL)projectStatusForUser:(PFUser *)user andProject:(PFObject *)project{
+    NSDictionary *attributes = [self attributesForUser:user];
+    if (attributes) {
+        NSMutableArray *projectsThatIncludeUser = [attributes objectForKey:UserAttributesIsAddedByCurrentUserKey];
+        if ([projectsThatIncludeUser containsObject:project]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (void)setProjectStatus:(BOOL)add forUser:(PFUser *)user andProject:(PFObject *)project{
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForUser:user]];
+    NSMutableArray *projectsThatIncludeUser = [attributes objectForKey:UserAttributesIsAddedByCurrentUserKey];
+    if (add) {
+        [projectsThatIncludeUser addObject:project];
+    } else {
+        [projectsThatIncludeUser removeObject:project];
+    }
+    [attributes setObject:projectsThatIncludeUser forKey:UserAttributesIsAddedByCurrentUserKey];
+    [self setAttributes:attributes forUser:user];
 }
 
 - (NSNumber *)projectCountForUser:(PFUser *)user {

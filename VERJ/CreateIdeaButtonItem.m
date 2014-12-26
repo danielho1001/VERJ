@@ -17,7 +17,7 @@
     if (self) {
 //        [createIdeaButton setBackgroundImage:[UIImage imageNamed:@"CreateIdeaButton.png"] forState:UIControlStateNormal];
         [createIdeaButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-        [createIdeaButton setFrame:CGRectMake(0.0f, 0.0f, 35.0f, 32.0f)];
+        [createIdeaButton setFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
         [createIdeaButton setImage:[UIImage imageNamed:@"CreateIdeaButton.png"] forState:UIControlStateNormal];
 //        [createIdeaButton setImage:[UIImage imageNamed:@"ButtonImageSettingsSelected.png"] forState:UIControlStateHighlighted];
     }

@@ -21,15 +21,15 @@ NSString *const ActivityToUserKey = @"toUser";
 NSString *const ActivityFromUserKey = @"fromUser";
 NSString *const ActivityTypeKey = @"type";
 NSString *const ActivityContentKey = @"content";
-NSString *const ActivityProjectKey = @"Project";
-NSString *const ActivityIdeaKey = @"Idea";
+NSString *const ActivityToProjectKey = @"toProject";
+NSString *const ActivityToIdeaKey = @"toIdea";
 // Type Values
 NSString *const ActivityTypeProjectAccepted = @"projectAccepted";
 NSString *const ActivityTypeProjectCreated = @"projectCreated";
 NSString *const ActivityTypeIdeaCreated = @"ideaCreated";
 NSString *const ActivityTypeJoined = @"joined";
-
-
+NSString *const ActivityTypeAddFriendToProject = @"addFriendToProject";
+NSString *const ActivityTypeIdeaVote = @"ideaVoted";
 
 #pragma mark - Project
 // Class Key
@@ -57,6 +57,7 @@ NSString *const IdeaTypePhoto = @"photo";
 // Field keys
 NSString *const UserDisplayNameKey = @"displayName";
 NSString *const UserFacebookIDKey = @"facebookId";
+NSString *const UserEmailKey = @"email";
 NSString *const UserPhotoIDKey = @"photoId";
 NSString *const UserFacebookFriendsKey = @"facebookFriends";
 
@@ -78,5 +79,7 @@ NSString *const IdeaAttributesScoreCountKey = @"scoreCount";
 // keys
 NSString *const UserAttributesIdeaCountKey                 = @"userIdeaCount";
 NSString *const UserAttributesProjectCountKey                 = @"userProjectCount";
+NSString *const UserAttributesIsAddedByCurrentUserKey    = @"isAddedByCurrentUser";
+
 
 

@@ -8,16 +8,17 @@
 
 #import "CreateProjectViewController.h"
 #import "Constants.h"
-
+#import "FindFriendsViewController.h"
+#import "AddFriendsToNewProjectViewController.h"
 
 @implementation CreateProjectViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     [self setUpView];
+    
+    self.friendsToBeInvited = nil;
 
 }
 
@@ -32,27 +33,29 @@
     self.projectNameField.placeholder = @"Name the project";
     [self.view addSubview:self.projectNameField];
     
-    UIButton *inviteFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    inviteFriendsButton.frame = CGRectMake(30.0f, 300.0f, 300.0f, 30.0f);
-    inviteFriendsButton.backgroundColor = [UIColor orangeColor];
-    inviteFriendsButton.titleLabel.text = @"Invite Friends";
-    inviteFriendsButton.titleLabel.textColor = [UIColor whiteColor];
-    [inviteFriendsButton addTarget:self action:@selector(inviteFriendsButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:inviteFriendsButton];
+    UIButton *addFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    addFriendsButton.frame = CGRectMake(30.0f, 300.0f, 300.0f, 30.0f);
+    addFriendsButton.backgroundColor = [UIColor orangeColor];
+    [addFriendsButton setTitle:@"Invite Friends" forState:UIControlStateNormal];
+    [addFriendsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [addFriendsButton addTarget:self action:@selector(addFriendsButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addFriendsButton];
     
     UIButton *createProjectButton = [UIButton buttonWithType:UIButtonTypeCustom];
     createProjectButton.backgroundColor = [UIColor orangeColor];
     createProjectButton.frame = CGRectMake( 30.0f, 500.0f, 300.0f, 30.0f);
-    createProjectButton.titleLabel.text = @"Create Project";
-    createProjectButton.titleLabel.textColor = [UIColor whiteColor];
+    [createProjectButton setTitle:@"Create Project" forState:UIControlStateNormal];
+    [createProjectButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [createProjectButton addTarget:self action:@selector(createProjectButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:createProjectButton];
 }
 
 #pragma mark - Selector methods
 
--(void)inviteFriendsButtonAction:(id)sender {
-    
+-(void)addFriendsButtonAction:(id)sender {
+    AddFriendsToNewProjectViewController *addFriendsVC = [[AddFriendsToNewProjectViewController alloc] initWithFriends:self.friendsToBeInvited];
+    addFriendsVC.delegate = self;
+    [self.navigationController pushViewController:addFriendsVC animated:YES];
 }
 
 -(void)cancel:(id)sender {
@@ -66,9 +69,10 @@
         PFObject *project = [PFObject objectWithClassName:ProjectClassKey];
         [project setObject:[PFUser currentUser] forKey:ProjectUserKey];
         [project setObject:trimmedComment forKey:ProjectNameKey];
-        
-//        [project setObject: forKey:ProjectParticipantsKey];
-        
+        PFRelation *participantsRelation = [project relationForKey:ProjectParticipantsKey];
+        for (PFObject *friend in self.friendsToBeInvited) {
+            [participantsRelation addObject:friend];
+        }
         // projects are public, but may only be modified by the user who uploaded them
         PFACL *projectACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [projectACL setPublicReadAccess:YES];
@@ -79,12 +83,13 @@
             if (succeeded) {
                 PFObject *projectCreated = [PFObject objectWithClassName:ActivityClassKey];
                 [projectCreated setObject:ActivityTypeProjectCreated forKey:ActivityTypeKey];
-                [projectCreated setObject:project forKey:ActivityProjectKey];
+                [projectCreated setObject:project forKey:ActivityToProjectKey];
                 [projectCreated setObject:[PFUser currentUser] forKey:ActivityFromUserKey];
-                
-//                PFRelation *invitedUsers = [projectCreated relationForKey:ActivityToUserKey];
-//                [invitedUsers addObject:[PFUser currentUser]];
-//                [projectCreated setObject:invitedUsers forKey:ActivityToUserKey];
+
+                PFRelation *invitedUsersRelation = [projectCreated relationForKey:ActivityToUserKey];
+                for (PFObject *friend in self.friendsToBeInvited) {
+                    [invitedUsersRelation addObject:friend];
+                }
                 [projectCreated setObject:trimmedComment forKey:ActivityContentKey];
                 
                 PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
@@ -108,5 +113,12 @@
     [textField resignFirstResponder];
     return NO;
 }
+
+#pragma mark - Delegate Methods
+
+-(void)sendFriendsToCreateProjectPage:(NSMutableArray *)friends {
+    self.friendsToBeInvited = friends;
+}
+
 
 @end

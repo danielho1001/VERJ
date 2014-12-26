@@ -39,7 +39,7 @@
 
 - (IBAction)loginButtonTouchHandler:(id)sender  {
     // Set permissions required from the facebook user account
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_location"];
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"email", @"user_friends", @"user_location"];
     
     // Login PFUser using Facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
@@ -71,13 +71,13 @@
                 }];
             } else {
                 NSLog(@"User with facebook logged in!");
-//                [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-//                    if (!error) {
-//                        [self facebookRequestDidLoad:result];
-//                    } else {
-//                        [self facebookRequestDidFailWithError:error];
-//                    }
-//                }];
+                [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                    if (!error) {
+                        [self facebookRequestDidLoad:result];
+                    } else {
+                        [self facebookRequestDidFailWithError:error];
+                    }
+                }];
             }
             
             [self presentProjectsTableViewControllerAnimated:YES];
@@ -147,22 +147,11 @@
                 [user removeObjectForKey:UserFacebookFriendsKey];
             }
             
-            //            self.hud.labelText = NSLocalizedString(@"Following Friends", nil);
-            //            firstLaunch = YES;
-            
-            //            [user setObject:@YES forKey:kPAPUserAlreadyAutoFollowedFacebookFriendsKey];
             NSError *error = nil;
             
             // find common Facebook friends already using Anypic
             PFQuery *facebookFriendsQuery = [PFUser query];
             [facebookFriendsQuery whereKey:UserFacebookIDKey containedIn:facebookIds];
-            
-            // auto-follow Parse employees
-            //            PFQuery *parseEmployeesQuery = [PFUser query];
-            //            [parseEmployeesQuery whereKey:kPAPUserFacebookIDKey containedIn:kPAPParseEmployeeAccounts];
-            
-            // combined query
-            //            PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:parseEmployeesQuery,facebookFriendsQuery, nil]];
             
             NSArray *fbFriends = [facebookFriendsQuery findObjects:&error];
             
@@ -229,6 +218,11 @@
             NSString *facebookId = result[@"id"];
             if (facebookId && [facebookId length] != 0) {
                 [user setObject:facebookId forKey:UserFacebookIDKey];
+            }
+            
+            NSString *facebookEmail = result[@"email"];
+            if (facebookEmail && [facebookEmail length] != 0) {
+                [user setObject:facebookEmail forKey:UserEmailKey];
             }
             
             [user saveEventually];

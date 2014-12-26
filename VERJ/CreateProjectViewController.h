@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Verj Technologies. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "AddFriendsToNewProjectViewController.h"
 
 @protocol CreateProjectDelegate <NSObject>
 
@@ -15,9 +17,11 @@
 
 @end
 
-@interface CreateProjectViewController : UIViewController <UITextFieldDelegate>
+@interface CreateProjectViewController : UIViewController <UITextFieldDelegate, AddFriendsToNewProjectDelegate>
 
 @property (nonatomic, strong) UITextField *projectNameField;
+
+@property (nonatomic, strong) NSMutableArray *friendsToBeInvited;
 
 @property (nonatomic, weak) id<CreateProjectDelegate> delegate;
 

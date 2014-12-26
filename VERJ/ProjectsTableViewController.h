@@ -7,10 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "Reachability.h"
+#import "MTStatusBarOverlay.h"
 #import <UIKit/UIKit.h>
 #import <ParseUI/ParseUI.h>
 #import "CreateProjectViewController.h"
 
-@interface ProjectsTableViewController : PFQueryTableViewController <CreateProjectDelegate>
+@interface ProjectsTableViewController : PFQueryTableViewController <CreateProjectDelegate, MTStatusBarOverlayDelegate>
+
+@property (nonatomic, assign, getter = isFirstLaunch) BOOL firstLaunch;
 
 @end

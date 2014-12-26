@@ -12,6 +12,7 @@
 #import "IdeasTableViewController.h"
 #import "CreateProjectViewController.h"
 #import "ProjectCell.h"
+#import "Reachability.h"
 #import "NewIdeaViewController.h"
 #import <Parse/Parse.h>
 
@@ -21,6 +22,7 @@
 @property (nonatomic,strong) UINavigationController *navController;
 
 @property (nonatomic, assign) BOOL shouldReloadOnAppear;
+@property (nonatomic, strong) MTStatusBarOverlay *statusBar;
 
 @end
 
@@ -29,8 +31,6 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        
-//        self.outstandingSectionHeaderQueries = [NSMutableDictionary dictionary];
         
         // The className to query on
         self.parseClassName = ProjectClassKey;
@@ -41,12 +41,11 @@
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
         
+        self.loadingViewEnabled = NO;
+        
         // The number of objects to show per page
 //        self.objectsPerPage = 10;
-        
-//        // Improve scrolling performance by reusing UITableView section headers
-//        self.reusableSectionHeaderViews = [NSMutableSet setWithCapacity:3];
-//        
+
         self.shouldReloadOnAppear = YES;
     }
     return self;
@@ -55,10 +54,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoNavigationBar.png"]];
-//    self.navigationItem.rightBarButtonItem = [[NewProjectButtonItem alloc] initWithTarget:self action:@selector(newProjectButtonAction:)];
     self.navigationItem.title = @"VERJ";
     self.navController = [[UINavigationController alloc] init];
+    
+    self.statusBar = [MTStatusBarOverlay sharedInstance];
+    self.statusBar.delegate = self;
+    self.statusBar.hidesActivity = YES;
     
     [self.navigationItem setHidesBackButton:YES];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButtonAction:)];
@@ -69,7 +70,6 @@
     [super viewDidAppear:animated];
     
     if (self.shouldReloadOnAppear) {
-        self.shouldReloadOnAppear = NO;
         [self loadObjects];
     }
 }
@@ -82,6 +82,7 @@
 #pragma mark - Data methods
 
 - (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+    
     // overridden, since we want to implement sections
     if (indexPath.row == 0) {
         return nil;
@@ -102,8 +103,20 @@
 
     // We create a final compound query that will find all of the photos that were
     // taken by the user's friends or by the user
-    [projectsQuery includeKey:ActivityProjectKey];
+    [projectsQuery includeKey:ActivityToProjectKey];
     [projectsQuery orderByDescending:@"updatedAt"];
+    
+    // A pull-to-refresh should always trigger a network request.
+    [projectsQuery setCachePolicy:kPFCachePolicyNetworkOnly];
+
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network.
+    //
+    // If there is no network connection, we will hit the cache first.
+    if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
+//        [self.statusBar postMessage:@"No Internet Connection" duration:2 animated:YES];
+        [projectsQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    }
     return projectsQuery;
 }
 
@@ -117,6 +130,25 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return [self.objects count] + 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 72;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object{
@@ -133,8 +165,7 @@
         if (cell == nil) {
             cell = [[ProjectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-//        NSInteger decrementedRowNum = indexPath.row - 1;
-        PFObject *project = [object objectForKey:ActivityProjectKey];
+        PFObject *project = [object objectForKey:ActivityToProjectKey];
         cell.textLabel.text = [project objectForKey:ProjectNameKey];
         return cell;
     }
@@ -144,9 +175,7 @@
 #pragma mark - delegate methods
 
 -(void)logoutButtonAction:(id)sender {
-    [PFUser logOut];
-    
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] logOut];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,7 +183,7 @@
         [self presentCreateNewProjectViewController];
     } else {
         NSInteger decrementedRowNum = indexPath.row - 1;
-        PFObject *project = [[self.objects objectAtIndex:decrementedRowNum] objectForKey:ActivityProjectKey];
+        PFObject *project = [[self.objects objectAtIndex:decrementedRowNum] objectForKey:ActivityToProjectKey];
         [self presentIdeasTableViewControllerWithProject:project animated:YES];
     }
 }
@@ -179,6 +208,7 @@
 -(void)sendNewProjectToProjectsTablePage:(PFObject *)project {
     [self presentIdeasTableViewControllerWithProject:project animated:YES];
 }
+
 
 
 @end
