@@ -14,20 +14,22 @@
 + (id)sharedCache;
 
 - (void)clear;
-- (void)setAttributesForIdea:(PFObject *)idea voters:(NSArray *)voters votedByCurrentUser:(BOOL)votedByCurrentUser;
+- (void)setAttributesForIdea:(PFObject *)idea voters:(NSArray *)voters withScore:(NSNumber *)score votedByCurrentUser:(BOOL)votedByCurrentUser;
 - (NSDictionary *)attributesForIdea:(PFObject *)idea;
 - (NSDictionary *)attributesForProject:(PFObject *)project;
-- (NSNumber *)voteCountForIdea:(PFObject *)idea;
+
+- (NSNumber *)voterCountForIdea:(PFObject *)idea;
 - (NSNumber *)ideaCountForProject:(PFObject *)project;
-- (NSArray *)scoreForIdea:(PFObject *)idea;
+- (NSNumber *)scoreForIdea:(PFObject *)idea;
 - (NSArray *)votersForIdea:(PFObject *)idea;
-- (NSArray *)contributorsForProject:(PFObject *)project;
 - (void)setIdeaIsVotedByCurrentUser:(PFObject *)idea up:(BOOL)voted;
 - (BOOL)isIdeaVotedByCurrentUser:(PFObject *)idea;
 - (void)incrementScoreCountForIdea:(PFObject *)idea;
 - (void)decrementScoreCountForIdea:(PFObject *)idea;
+
 - (void)incrementIdeaCountForProject:(PFObject *)project;
 - (void)decrementIdeaCountForProject:(PFObject *)project;
+- (NSArray *)contributorsForProject:(PFObject *)project;
 
 - (void)setAttributesForUser:(PFUser *)user projectCount:(NSNumber *)count;
 - (NSDictionary *)attributesForUser:(PFUser *)user;

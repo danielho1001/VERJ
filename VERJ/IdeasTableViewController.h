@@ -8,8 +8,10 @@
 
 #import <ParseUI/ParseUI.h>
 #import <Parse/Parse.h>
+#import "MCSwipeTableViewCell.h"
+#import "MTStatusBarOverlay.h"
 
-@interface IdeasTableViewController : PFQueryTableViewController
+@interface IdeasTableViewController : PFQueryTableViewController <MCSwipeTableViewCellDelegate, MTStatusBarOverlayDelegate>
 
 @property (nonatomic, strong) PFObject *project;
 

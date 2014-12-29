@@ -43,7 +43,8 @@
     [self.cache removeAllObjects];
 }
 
-- (void)setAttributesForIdea:(PFObject *)idea voters:(NSArray *)voters score:(NSNumber *)score votedByCurrentUser:(BOOL)votedByCurrentUser {
+- (void)setAttributesForIdea:(PFObject *)idea voters:(NSArray *)voters withScore:(NSNumber *)score votedByCurrentUser:(BOOL)votedByCurrentUser {
+    //Storing if idea is voted by current user, count of voters, score of idea, and an array of all the voters
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithBool:votedByCurrentUser],IdeaAttributesIsVotedByCurrentUserKey,
                                 @([voters count]),IdeaAttributesVoterCountKey,
@@ -62,7 +63,7 @@
     return [self.cache objectForKey:key];
 }
 
-- (NSNumber *)scoreCountForIdea:(PFObject *)idea {
+- (NSNumber *)scoreForIdea:(PFObject *)idea {
     NSDictionary *attributes = [self attributesForIdea:idea];
     if (attributes) {
         return [attributes objectForKey:IdeaAttributesScoreCountKey];
@@ -123,14 +124,14 @@
 }
 
 - (void)incrementScoreCountForIdea:(PFObject *)idea {
-    NSNumber *scoreCount = [NSNumber numberWithInt:[[self scoreCountForIdea:idea] intValue] + 1];
+    NSNumber *scoreCount = [NSNumber numberWithInt:[[self scoreForIdea:idea] intValue] + 1];
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForIdea:idea]];
     [attributes setObject:scoreCount forKey:IdeaAttributesScoreCountKey];
     [self setAttributes:attributes forIdea:idea];
 }
 
 - (void)decrementScoreCountForIdea:(PFObject *)idea {
-    NSNumber *scoreCount = [NSNumber numberWithInt:[[self scoreCountForIdea:idea] intValue] - 1];
+    NSNumber *scoreCount = [NSNumber numberWithInt:[[self scoreForIdea:idea] intValue] - 1];
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForIdea:idea]];
     [attributes setObject:scoreCount forKey:IdeaAttributesScoreCountKey];
     [self setAttributes:attributes forIdea:idea];

@@ -9,19 +9,20 @@
 #import "IdeasTableViewController.h"
 #import "AppDelegate.h"
 #import "Constants.h"
-#import "IdeaCell.h"
 #import "CreateIdeaButtonItem.h"
 #import "BackButton.h"
 #import "NewIdeaViewController.h"
-#import "MCSwipeTableViewCell.h"
 #import "VerjUtility.h"
 #import "VerjCache.h"
 #import <Parse/Parse.h>
 
 @interface IdeasTableViewController()
 
+@property (nonatomic, strong) NSMutableDictionary *outstandingCellQueries;
+
 @property (nonatomic, assign) BOOL shouldReloadOnAppear;
 
+@property (nonatomic, strong) MTStatusBarOverlay *statusBar;
 @end
 
 @implementation IdeasTableViewController
@@ -31,6 +32,8 @@
 - (id)initWithProject:(PFObject *)aProject {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
+        self.outstandingCellQueries = [NSMutableDictionary dictionary];
+        
         self.project = aProject;
         
         // The className to query on
@@ -49,17 +52,22 @@
 
 #pragma mark - UIViewController
 -(void)viewDidLoad {
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
     [super viewDidLoad];
+    
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    /** still a slight delay in animating this */
+    
     self.navigationItem.title = [self.project objectForKey:ProjectNameKey];
     self.navigationItem.rightBarButtonItem = [[CreateIdeaButtonItem alloc] initWithTarget:self action:@selector(createIdeaButtonAction:)];
     self.navigationItem.leftBarButtonItem = [[BackButton alloc] initWithTarget:self action:@selector(backButtonAction:) withImageName:@"menu.png"];
+    
+    self.statusBar = [MTStatusBarOverlay sharedInstance];
+    self.statusBar.delegate = self;
+    self.statusBar.hidesActivity = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     if (self.shouldReloadOnAppear) {
         [self loadObjects];
     }
@@ -73,6 +81,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([self.objects count] == 0) {
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        /** still has a slight delay in removing the separator */
+    } else {
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    }
     return [self.objects count];
 }
 
@@ -85,12 +99,58 @@
     NSString *CellIdentifier = @"Cell";
     MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[MCSwipeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier withIdea:object];
+        cell = [[MCSwipeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.delegate = self;
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone; // Disallow select highlighting
+    cell.idea = object;
     //Add swipe gesture selectors and update information from cache
-    [self configCell:cell];
+    
+    NSDictionary *attributesForIdea = [[VerjCache sharedCache] attributesForIdea:cell.idea];
+    if (attributesForIdea) {
+        [self configCell:cell];
+    } else {
+        @synchronized(self) {
+            // check if we can update the cache
+            NSNumber *outstandingCellQueryStatus = [self.outstandingCellQueries objectForKey:@(indexPath.row)];
+            if (!outstandingCellQueryStatus) {
+                PFQuery *query = [VerjUtility queryForActivitiesOnIdea:cell.idea cachePolicy:kPFCachePolicyNetworkOnly];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    @synchronized(self) {
+                        [self.outstandingCellQueries removeObjectForKey:@(indexPath.row)];
+                        
+                        if (error) {
+                            NSLog(@"Error in outstandingCellQuery");
+                            return;
+                        }
+                        
+                        NSMutableArray *voters = [NSMutableArray array];
+                        NSNumber *score = [NSNumber numberWithInt:0];
+                        
+                        BOOL isVotedByCurrentUser = NO;
+                        
+                        for (PFObject *activity in objects) {
+                         
+                            [voters addObject:[activity objectForKey:ActivityFromUserKey]];
+                            if ([[activity objectForKey:ActivityContentKey] isEqualToString:@"YES"]) {
+                                score = [NSNumber numberWithInt:[score intValue] + 1];
+                            } else {
+                                score = [NSNumber numberWithInt:[score intValue] - 1];
+                            }
 
+                            if ([[[activity objectForKey:ActivityFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+                                isVotedByCurrentUser = YES;
+                            }
+                        }
+                        
+                        [[VerjCache sharedCache] setAttributesForIdea:cell.idea voters:voters withScore:score votedByCurrentUser:isVotedByCurrentUser];
+                        
+                        [self configCell:cell];
+                    }
+                }];
+            }
+        }
+    }
     return cell;
 }
 
@@ -120,17 +180,14 @@
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
-    // Check if there are any ideas. If none, then auto trigger to generation page
-//    [self checkForIdeas];
+
 }
 
 #pragma mark - ()
 
 -(void)configCell:(MCSwipeTableViewCell *)cell{
-    //Check if there's existing info on this cell in cache
-    //If yes, update it
-    //
-    //If no, query Parse then update
+    cell.textLabel.text = [cell.idea objectForKey:IdeaContentKey];
+    [self updateCell:cell];
     
     [cell setSwipeGestureWithView:cell.upImgView color:cell.upColor mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         [self voteOnCell:cell up:YES];
@@ -141,26 +198,43 @@
     }];
 }
 
-- (void)voteOnCell:(MCSwipeTableViewCell *)cell up:(BOOL)votedUp {
-    NSNumber *voteCount = cell.count;
-    if (votedUp) {
-        voteCount = [NSNumber numberWithInt:[voteCount intValue] + 1];
-        [[VerjCache sharedCache] incrementScoreCountForIdea:cell.idea];
-    } else {
-        voteCount = [NSNumber numberWithInt:[voteCount intValue] - 1];
-        [[VerjCache sharedCache] decrementScoreCountForIdea:cell.idea];
-    }
-    [[VerjCache sharedCache] setIdeaIsVotedByCurrentUser:cell.idea up:votedUp];
-    cell.count = voteCount;
+- (void)updateCell:(MCSwipeTableViewCell *) cell{
+    cell.voteStatus = [[VerjCache sharedCache] isIdeaVotedByCurrentUser:cell.idea];
+    cell.score = [[VerjCache sharedCache] scoreForIdea:cell.idea];
+    cell.voterCount = [[VerjCache sharedCache] voterCountForIdea:cell.idea];
+    /** currently don't store info on who has voted on this idea */
     
-    [VerjUtility voteIdeaInBackground:cell.idea up:votedUp block:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"%@", cell.count);
-        }
-        else {
-            // Do some recovery
-        }
+    [UIView animateWithDuration:0 animations:^{
+        //        [cell setBackgroundColor:[VerjUtility getColorForIdea:cell.idea]];
+        [cell.scorePalette setBackgroundColor:[VerjUtility getColorForIdea:cell.idea]];
     }];
+}
+
+
+- (void)voteOnCell:(MCSwipeTableViewCell *)cell up:(BOOL)votedUp {
+    if (![[VerjCache sharedCache] isIdeaVotedByCurrentUser:cell.idea]) {
+        NSNumber *voteCount = cell.score;
+        if (votedUp) {
+            voteCount = [NSNumber numberWithInt:[voteCount intValue] + 1];
+            [[VerjCache sharedCache] incrementScoreCountForIdea:cell.idea];
+        } else {
+            voteCount = [NSNumber numberWithInt:[voteCount intValue] - 1];
+            [[VerjCache sharedCache] decrementScoreCountForIdea:cell.idea];
+        }
+        [[VerjCache sharedCache] setIdeaIsVotedByCurrentUser:cell.idea up:votedUp];
+        [self updateCell:cell];
+        
+        [VerjUtility voteIdeaInBackground:cell.idea up:votedUp block:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                
+            }
+            else {
+                [self.statusBar postMessage:@"Could not save vote in database. Will keep trying" duration:2 animated:YES];
+            }
+        }];
+    } else {
+        [self.statusBar postMessage:@"Already voted on this idea" duration:2 animated:YES];
+    }
 }
 
 

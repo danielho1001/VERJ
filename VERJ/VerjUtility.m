@@ -28,6 +28,41 @@
     return [UIColor colorWithRed:232.0 / 255.0 green:61.0 / 255.0 blue:14.0 / 255.0 alpha:1.0];
 }
 
++ (UIColor *)getColorForIdea:(PFObject *)idea {
+    NSNumber *score = [[VerjCache sharedCache] scoreForIdea:idea];
+    NSNumber *votersCount = [[VerjCache sharedCache] voterCountForIdea:idea];
+    float red = 255.0/255.0;
+    float green = 255.0/255.0;
+    float blue = 255.0/255.0;
+    float alpha = 1.0;
+    
+    if ([score floatValue] > 0) {
+        green = 102.0/255.0;
+        blue = 0.0/255.0;
+        if ([score floatValue] >= 10) {
+            alpha = 1.0;
+        } else {
+            alpha = [score floatValue]/[votersCount floatValue];
+        }
+    } else if ([score floatValue]< 0) {
+        red = 0.0/255.0;
+        green = 204.0/255.0;
+        blue = 204.0/255.0;
+        if ([score floatValue] <= -10) {
+            alpha = 1.0;
+        } else {
+            alpha = (abs([score floatValue]))/[votersCount floatValue];
+        }
+    }  else if ([score floatValue] == 0){ // Need to account for if note has been voted
+        red = 0.0/255.0;
+        green = 0.0/255.0;
+        blue = 0.0/255.0;
+        alpha = 0.1;
+    }
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
+
+
 + (BOOL)userHasValidFacebookData:(PFUser *)user {
     NSString *facebookId = [user objectForKey:UserFacebookIDKey];
     return (facebookId && facebookId.length > 0);
@@ -55,11 +90,11 @@
         PFRelation *toUserRelation = [voteActivity relationForKey:ActivityToUserKey];
         [toUserRelation addObject:[idea objectForKey:IdeaFromUserKey]];
         [voteActivity setObject:idea forKey:ActivityToIdeaKey];
-//        [voteActivity setObject:[VerjUtility getStringForVote:vote] forKey:ActivityContentKey];
+        [voteActivity setObject:[VerjUtility getStringForVote:vote] forKey:ActivityContentKey];
         
         PFACL *voteACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [voteACL setPublicReadAccess:YES];
-//        [voteACL setWriteAccess:YES forUser:[PFUser currentUser]];
+        [voteACL setWriteAccess:YES forUser:[PFUser currentUser]];
         voteActivity.ACL = voteACL;
         
         [voteActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -67,40 +102,50 @@
                 completionBlock(succeeded,error);
             }
             
-//            // refresh cache
-//            PFQuery *query = [VerjUtility queryForActivitiesOnIdea:idea cachePolicy:kPFCachePolicyNetworkOnly];
-//            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//                if (!error) {
-//                    
-//                    NSMutableArray *likers = [NSMutableArray array];
-//                    NSMutableArray *commenters = [NSMutableArray array];
-//                    
-//                    BOOL isLikedByCurrentUser = NO;
-//                    
-//                    for (PFObject *activity in objects) {
-//                        if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeLike] && [activity objectForKey:kPAPActivityFromUserKey]) {
-//                            [likers addObject:[activity objectForKey:kPAPActivityFromUserKey]];
-//                        } else if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeComment] && [activity objectForKey:kPAPActivityFromUserKey]) {
-//                            [commenters addObject:[activity objectForKey:kPAPActivityFromUserKey]];
-//                        }
-//                        
-//                        if ([[[activity objectForKey:kPAPActivityFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
-//                            if ([[activity objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeLike]) {
-//                                isLikedByCurrentUser = YES;
-//                            }
-//                        }
-//                    }
-//                    
-//                    [[PAPCache sharedCache] setAttributesForPhoto:photo likers:likers commenters:commenters likedByCurrentUser:isLikedByCurrentUser];
-//                }
-//                
-//                [[NSNotificationCenter defaultCenter] postNotificationName:PAPUtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:photo userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:succeeded] forKey:PAPPhotoDetailsViewControllerUserLikedUnlikedPhotoNotificationUserInfoLikedKey]];
-//            }];
+            // refresh cache
+            PFQuery *query = [VerjUtility queryForActivitiesOnIdea:idea cachePolicy:kPFCachePolicyNetworkOnly];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    
+                    NSMutableArray *voters = [NSMutableArray array];
+                    NSNumber *score = [NSNumber numberWithInt:0];
+                    
+                    BOOL isVotedByCurrentUser = NO;
+                    
+                    for (PFObject *activity in objects) {
+                        [voters addObject:[activity objectForKey:ActivityFromUserKey]];
+                        if ([[activity objectForKey:ActivityContentKey] isEqualToString:@"YES"]) {
+                            score = [NSNumber numberWithInt:[score intValue] + 1];
+                        } else {
+                            score = [NSNumber numberWithInt:[score intValue] - 1];
+                        }
+                        
+                        if ([[[activity objectForKey:ActivityFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+                            isVotedByCurrentUser = YES;
+                        }
+                    }
+                    
+                    [[VerjCache sharedCache] setAttributesForIdea:idea voters:voters withScore:score votedByCurrentUser:isVotedByCurrentUser];
+                }
+                
+            }];
             
         }];
     }];
 
 
+}
+
++ (PFQuery *)queryForActivitiesOnIdea:(PFObject *)idea cachePolicy:(PFCachePolicy)cachePolicy {
+    PFQuery *queryVotes = [PFQuery queryWithClassName:ActivityClassKey];
+    [queryVotes whereKey:ActivityToIdeaKey equalTo:idea];
+    [queryVotes whereKey:ActivityTypeKey equalTo:ActivityTypeIdeaVote];
+    
+    [queryVotes setCachePolicy:cachePolicy];
+    [queryVotes includeKey:ActivityFromUserKey];
+    [queryVotes includeKey:ActivityToIdeaKey];
+    
+    return queryVotes;
 }
 
 + (NSString *)getStringForVote:(BOOL)votedUp {

@@ -36,7 +36,6 @@
 		D40F65351A188FB300E5D3BD /* IdeasTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F65341A188FB300E5D3BD /* IdeasTableViewController.m */; };
 		D40F65381A1890D800E5D3BD /* CreateProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F65371A1890D800E5D3BD /* CreateProjectViewController.m */; };
 		D40F653B1A18A3E500E5D3BD /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40F653A1A18A3E500E5D3BD /* ProjectCell.m */; };
-		D42A132E1A214330004EDF58 /* FindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A132D1A214330004EDF58 /* FindFriendsViewController.m */; };
 		D42A13311A214A11004EDF58 /* FindFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A13301A214A11004EDF58 /* FindFriendsCell.m */; };
 		D42A13341A215633004EDF58 /* VerjUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A13331A215633004EDF58 /* VerjUtility.m */; };
 		D42A13371A216762004EDF58 /* AddFriendsToNewProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A13361A216762004EDF58 /* AddFriendsToNewProjectViewController.m */; };
@@ -52,14 +51,12 @@
 		D49CEA4D1A46366400475961 /* newIdeaNavBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CEA4C1A46366400475961 /* newIdeaNavBarBackground.png */; };
 		D49CEA511A463EED00475961 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CEA501A463EED00475961 /* settings.png */; };
 		D49CEA541A4642C700475961 /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CEA531A4642C700475961 /* MCSwipeTableViewCell.m */; };
-		D49CEA581A46485100475961 /* SwipableIdeaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CEA571A46485100475961 /* SwipableIdeaCell.m */; };
 		D49CEA5C1A46557700475961 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CEA5B1A46557700475961 /* up.png */; };
 		D49CEA5E1A46795000475961 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CEA5D1A46795000475961 /* down.png */; };
 		D49DD8A11A427354004BD83A /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = D49DD8A01A427354004BD83A /* cancel.png */; };
 		D49DD8A31A43C2F5004BD83A /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D49DD8A21A43C2F5004BD83A /* plus.png */; };
 		D49E08901A491E0800CF409D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D49E088F1A491E0800CF409D /* MBProgressHUD.m */; };
 		D49E08941A49235000CF409D /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D49E08931A49235000CF409D /* MTStatusBarOverlay.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		D4A0E2221A193A3100A1825F /* IdeaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E2211A193A3100A1825F /* IdeaCell.m */; };
 		D4A0E2261A193F1800A1825F /* CreateIdeaButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E2251A193F1800A1825F /* CreateIdeaButtonItem.m */; };
 		D4A0E2281A193F7900A1825F /* CreateIdeaButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0E2271A193F7900A1825F /* CreateIdeaButton.png */; };
 		D4A0E22D1A1948BD00A1825F /* NewIdeaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A0E22C1A1948BD00A1825F /* NewIdeaViewController.m */; };
@@ -69,6 +66,8 @@
 		D4A0E7CC1A40937D000C6C99 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0E7CB1A40937D000C6C99 /* background.png */; };
 		D4A0E7CE1A4093B9000C6C99 /* loginBottomBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0E7CD1A4093B9000C6C99 /* loginBottomBackground.png */; };
 		D4A364FD1A353C0D0030008E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A364FC1A353C0D0030008E /* Reachability.m */; };
+		D4B3A00F1A4E27EC00B67C4D /* CreateProjectPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B3A00E1A4E27EC00B67C4D /* CreateProjectPanelView.m */; };
+		D4B3A0111A4E315800B67C4D /* startProject.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B3A0101A4E315800B67C4D /* startProject.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,8 +122,6 @@
 		D40F65371A1890D800E5D3BD /* CreateProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateProjectViewController.m; sourceTree = "<group>"; };
 		D40F65391A18A3E500E5D3BD /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
 		D40F653A1A18A3E500E5D3BD /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
-		D42A132C1A214330004EDF58 /* FindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindFriendsViewController.h; sourceTree = "<group>"; };
-		D42A132D1A214330004EDF58 /* FindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindFriendsViewController.m; sourceTree = "<group>"; };
 		D42A132F1A214A11004EDF58 /* FindFriendsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindFriendsCell.h; sourceTree = "<group>"; };
 		D42A13301A214A11004EDF58 /* FindFriendsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindFriendsCell.m; sourceTree = "<group>"; };
 		D42A13321A215633004EDF58 /* VerjUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerjUtility.h; sourceTree = "<group>"; };
@@ -148,8 +145,6 @@
 		D49CEA501A463EED00475961 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		D49CEA521A4642C700475961 /* MCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSwipeTableViewCell.h; sourceTree = "<group>"; };
 		D49CEA531A4642C700475961 /* MCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSwipeTableViewCell.m; sourceTree = "<group>"; };
-		D49CEA561A46485100475961 /* SwipableIdeaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipableIdeaCell.h; sourceTree = "<group>"; };
-		D49CEA571A46485100475961 /* SwipableIdeaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipableIdeaCell.m; sourceTree = "<group>"; };
 		D49CEA5B1A46557700475961 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		D49CEA5D1A46795000475961 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		D49DD8A01A427354004BD83A /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
@@ -158,8 +153,6 @@
 		D49E088F1A491E0800CF409D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D49E08921A49235000CF409D /* MTStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTStatusBarOverlay.h; sourceTree = "<group>"; };
 		D49E08931A49235000CF409D /* MTStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTStatusBarOverlay.m; sourceTree = "<group>"; };
-		D4A0E2201A193A3100A1825F /* IdeaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdeaCell.h; sourceTree = "<group>"; };
-		D4A0E2211A193A3100A1825F /* IdeaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaCell.m; sourceTree = "<group>"; };
 		D4A0E2241A193F1800A1825F /* CreateIdeaButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateIdeaButtonItem.h; sourceTree = "<group>"; };
 		D4A0E2251A193F1800A1825F /* CreateIdeaButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateIdeaButtonItem.m; sourceTree = "<group>"; };
 		D4A0E2271A193F7900A1825F /* CreateIdeaButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CreateIdeaButton.png; sourceTree = "<group>"; };
@@ -174,6 +167,9 @@
 		D4A0E7CD1A4093B9000C6C99 /* loginBottomBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBottomBackground.png; sourceTree = "<group>"; };
 		D4A364FB1A353C0D0030008E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D4A364FC1A353C0D0030008E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		D4B3A00D1A4E27EC00B67C4D /* CreateProjectPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateProjectPanelView.h; sourceTree = "<group>"; };
+		D4B3A00E1A4E27EC00B67C4D /* CreateProjectPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateProjectPanelView.m; sourceTree = "<group>"; };
+		D4B3A0101A4E315800B67C4D /* startProject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startProject.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +294,7 @@
 		D40F651A1A186CED00E5D3BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4B3A0101A4E315800B67C4D /* startProject.png */,
 				D49CEA5D1A46795000475961 /* down.png */,
 				D49CEA5B1A46557700475961 /* up.png */,
 				D49CEA501A463EED00475961 /* settings.png */,
@@ -325,6 +322,8 @@
 				D49CEA4F1A4636C700475961 /* UIButtons */,
 				D49CEA4E1A4636AC00475961 /* TableViewCell */,
 				D4751BA01A29605D00C6BB95 /* IdeaGenerationPage */,
+				D4B3A00D1A4E27EC00B67C4D /* CreateProjectPanelView.h */,
+				D4B3A00E1A4E27EC00B67C4D /* CreateProjectPanelView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -371,16 +370,12 @@
 		D49CEA4E1A4636AC00475961 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				D4A0E2201A193A3100A1825F /* IdeaCell.h */,
-				D4A0E2211A193A3100A1825F /* IdeaCell.m */,
 				D40F652E1A1888A800E5D3BD /* NewProjectCell.h */,
 				D40F652F1A1888A800E5D3BD /* NewProjectCell.m */,
 				D40F65391A18A3E500E5D3BD /* ProjectCell.h */,
 				D40F653A1A18A3E500E5D3BD /* ProjectCell.m */,
 				D42A132F1A214A11004EDF58 /* FindFriendsCell.h */,
 				D42A13301A214A11004EDF58 /* FindFriendsCell.m */,
-				D49CEA561A46485100475961 /* SwipableIdeaCell.h */,
-				D49CEA571A46485100475961 /* SwipableIdeaCell.m */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -429,8 +424,6 @@
 			children = (
 				D40F65361A1890D800E5D3BD /* CreateProjectViewController.h */,
 				D40F65371A1890D800E5D3BD /* CreateProjectViewController.m */,
-				D42A132C1A214330004EDF58 /* FindFriendsViewController.h */,
-				D42A132D1A214330004EDF58 /* FindFriendsViewController.m */,
 				D42A13351A216762004EDF58 /* AddFriendsToNewProjectViewController.h */,
 				D42A13361A216762004EDF58 /* AddFriendsToNewProjectViewController.m */,
 			);
@@ -534,6 +527,7 @@
 				D49DD8A31A43C2F5004BD83A /* plus.png in Resources */,
 				D49C49231A400412006F0FD0 /* signup.png in Resources */,
 				D49C49271A400D94006F0FD0 /* signinBackground.png in Resources */,
+				D4B3A0111A4E315800B67C4D /* startProject.png in Resources */,
 				D49CEA4D1A46366400475961 /* newIdeaNavBarBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,16 +551,14 @@
 				D42A13341A215633004EDF58 /* VerjUtility.m in Sources */,
 				D4A0E22D1A1948BD00A1825F /* NewIdeaViewController.m in Sources */,
 				D49CEA541A4642C700475961 /* MCSwipeTableViewCell.m in Sources */,
-				D4A0E2221A193A3100A1825F /* IdeaCell.m in Sources */,
 				D4A0E2261A193F1800A1825F /* CreateIdeaButtonItem.m in Sources */,
 				D49C491C1A3FFEE8006F0FD0 /* ParseLoginViewControllers.m in Sources */,
 				D40F65381A1890D800E5D3BD /* CreateProjectViewController.m in Sources */,
 				D49E08901A491E0800CF409D /* MBProgressHUD.m in Sources */,
 				D40F65351A188FB300E5D3BD /* IdeasTableViewController.m in Sources */,
-				D49CEA581A46485100475961 /* SwipableIdeaCell.m in Sources */,
 				D49C49181A3FE2E8006F0FD0 /* RootViewController.m in Sources */,
-				D42A132E1A214330004EDF58 /* FindFriendsViewController.m in Sources */,
 				D42A13311A214A11004EDF58 /* FindFriendsCell.m in Sources */,
+				D4B3A00F1A4E27EC00B67C4D /* CreateProjectPanelView.m in Sources */,
 				D40F5FE81A18597B00E5D3BD /* AppDelegate.m in Sources */,
 				D4A0E2361A199EF500A1825F /* VerjCache.m in Sources */,
 				D4A0E2301A194B9700A1825F /* IdeaContentView.m in Sources */,
@@ -693,6 +685,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d452c9d7-cf6d-4971-a6fc-156261f4ffe4";
 			};
 			name = Debug;
 		};
@@ -712,6 +705,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "168af44d-96ad-4373-8d6b-fc8e405c6e99";
 			};
 			name = Release;
 		};

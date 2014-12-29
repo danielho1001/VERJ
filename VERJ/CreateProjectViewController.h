@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "AddFriendsToNewProjectViewController.h"
+#import "MTStatusBarOverlay.h"
 
 @protocol CreateProjectDelegate <NSObject>
 

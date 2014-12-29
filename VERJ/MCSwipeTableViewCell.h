@@ -66,11 +66,14 @@ typedef void (^MCSwipeCompletionBlock)(MCSwipeTableViewCell *cell, MCSwipeTableV
 @property (nonatomic, strong) UIColor *downColor;
 
 @property (nonatomic ,strong) PFObject *idea;
+
 @property (nonatomic, assign) BOOL voteStatus;
+@property (nonatomic, strong) NSNumber *score;
+@property (nonatomic, strong) NSNumber *voterCount;
 
-@property (nonatomic, strong) NSNumber *count;
+@property (nonatomic, strong) UIView *scorePalette;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withIdea:(PFObject *)idea;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 /** end of customized code for Verj */
 
 

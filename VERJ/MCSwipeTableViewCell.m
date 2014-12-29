@@ -75,7 +75,7 @@ typedef NS_ENUM(NSUInteger, MCSwipeTableViewCellDirection) {
 
 #pragma mark - Initialization
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withIdea:(PFObject *)aIdea{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self initializer];
@@ -85,13 +85,13 @@ typedef NS_ENUM(NSUInteger, MCSwipeTableViewCellDirection) {
         self.downImgView = [self viewWithImageName:@"down.png"];
         self.downColor = [VerjUtility getVerjRedColor];
         
-        self.textLabel.text = [aIdea objectForKey:IdeaContentKey];
-        
-        self.idea = aIdea;
+        self.scorePalette = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 72)];
+        [self addSubview:self.scorePalette];
     }
     
     return self;
 }
+
 
 - (UIImageView *)viewWithImageName:(NSString *)imageName {
     UIImage *image = [UIImage imageNamed:imageName];

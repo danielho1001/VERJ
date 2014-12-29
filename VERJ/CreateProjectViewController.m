@@ -8,16 +8,26 @@
 
 #import "CreateProjectViewController.h"
 #import "Constants.h"
-#import "FindFriendsViewController.h"
 #import "AddFriendsToNewProjectViewController.h"
+#import "CreateProjectPanelView.h"
+#import "VerjUtility.h"
+
+@interface CreateProjectViewController ()
+
+//@property (nonatomic, strong) CreateProjectPanelView *panelView;
+
+@end
 
 @implementation CreateProjectViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setUpView];
-    
+    if (self) {
+        [self setUpView];
+//        self.panelView = [[CreateProjectPanelView alloc] initWithFrame:[CreateProjectPanelView rectForView]];
+//        [self.view addSubview:self.panelView];
+    }
     self.friendsToBeInvited = nil;
 
 }
@@ -27,25 +37,25 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     
-    self.projectNameField = [[UITextField alloc] initWithFrame:CGRectMake(30.0f, 80.0f, 300.0f, 30.0f)];
+    self.projectNameField = [[UITextField alloc] initWithFrame:CGRectMake(0, 85.0f, self.view.frame.size.width, 44.0f)];
     self.projectNameField.delegate = self;
-    self.projectNameField.backgroundColor = [UIColor whiteColor];
-    self.projectNameField.placeholder = @"Name the project";
+    self.projectNameField.backgroundColor = [VerjUtility getVerjOrangeColor];
+    self.projectNameField.textColor = [UIColor whiteColor];
+    self.projectNameField.placeholder = @"Project Name";
+    self.projectNameField.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.projectNameField];
     
     UIButton *addFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    addFriendsButton.frame = CGRectMake(30.0f, 300.0f, 300.0f, 30.0f);
-    addFriendsButton.backgroundColor = [UIColor orangeColor];
-    [addFriendsButton setTitle:@"Invite Friends" forState:UIControlStateNormal];
+    addFriendsButton.frame = CGRectMake(0.0f, 153.0f, self.view.frame.size.width, 44.0f);
+    addFriendsButton.backgroundColor = [VerjUtility getVerjOrangeColor];
+    [addFriendsButton setTitle:@"Add Collaborators" forState:UIControlStateNormal];
     [addFriendsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addFriendsButton addTarget:self action:@selector(addFriendsButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addFriendsButton];
     
-    UIButton *createProjectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    createProjectButton.backgroundColor = [UIColor orangeColor];
-    createProjectButton.frame = CGRectMake( 30.0f, 500.0f, 300.0f, 30.0f);
-    [createProjectButton setTitle:@"Create Project" forState:UIControlStateNormal];
-    [createProjectButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    UIButton *createProjectButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 69, self.view.frame.size.width, 69.0f)];
+    [createProjectButton setBackgroundImage:[UIImage imageNamed:@"startProject.png"] forState:UIControlStateNormal];
+    createProjectButton.titleLabel.text = @"";
     [createProjectButton addTarget:self action:@selector(createProjectButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:createProjectButton];
 }
@@ -106,6 +116,8 @@
             }
         }];
 
+    } else {
+        
     }
 }
 

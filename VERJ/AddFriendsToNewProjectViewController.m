@@ -57,6 +57,8 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    
     [self.navigationItem setHidesBackButton:YES];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonAction:)];
     
@@ -65,11 +67,12 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < self.objects.count) {
-        return [FindFriendsCell heightForCell];
-    } else {
-        return 44.0f;
-    }
+//    if (indexPath.row < self.objects.count) {
+//        return [FindFriendsCell heightForCell];
+//    } else {
+//        return 44.0f;
+//    }
+    return [FindFriendsCell heightForCell];
 }
 
 #pragma mark - PFQueryTableViewController

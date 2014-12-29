@@ -16,6 +16,8 @@
 + (UIColor *)getVerjGreenColor;
 + (UIColor *)getVerjRedColor;
 
++ (UIColor *)getColorForIdea:(PFObject *)idea;
+
 + (BOOL)userHasValidFacebookData:(PFUser *)user;
 
 + (void)voteIdeaInBackground:(PFObject *)idea up:(BOOL)vote block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
