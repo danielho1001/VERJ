@@ -73,6 +73,36 @@
     }
 }
 
+#pragma mark - Data Source
+
+- (PFQuery *) queryForTable {
+    // Query for the ideas the current project contains
+    PFQuery *ideasQuery = [PFQuery queryWithClassName:IdeaClassKey];
+    [ideasQuery whereKey:IdeaProjectKey equalTo:self.project];
+    
+    [ideasQuery includeKey:IdeaProjectKey];
+    [ideasQuery orderByDescending:@"updatedAt"];
+    
+    // A pull-to-refresh should always trigger a network request.
+    [ideasQuery setCachePolicy:kPFCachePolicyNetworkOnly];
+
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network.
+    //
+    // If there is no network connection, we will hit the cache first.
+    if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
+        
+        [ideasQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    }
+    
+    return ideasQuery;
+}
+
+- (void)objectsDidLoad:(NSError *)error {
+    [super objectsDidLoad:error];
+    
+}
+
 #pragma mark - Data Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -145,42 +175,14 @@
                         
                         [[VerjCache sharedCache] setAttributesForIdea:cell.idea voters:voters withScore:score votedByCurrentUser:isVotedByCurrentUser];
                         
-                        [self configCell:cell];
+                        
                     }
                 }];
             }
+            [self configCell:cell];
         }
     }
     return cell;
-}
-
-#pragma mark - Data Source
-
-- (PFQuery *) queryForTable {
-    // Query for the ideas the current project contains
-    PFQuery *ideasQuery = [PFQuery queryWithClassName:IdeaClassKey];
-    [ideasQuery whereKey:IdeaProjectKey equalTo:self.project];
-    [ideasQuery includeKey:IdeaProjectKey];
-    [ideasQuery orderByDescending:@"updatedAt"];
-    
-    // A pull-to-refresh should always trigger a network request.
-    [ideasQuery setCachePolicy:kPFCachePolicyNetworkOnly];
-    
-    // If no objects are loaded in memory, we look to the cache first to fill the table
-    // and then subsequently do a query against the network.
-    //
-    // If there is no network connection, we will hit the cache first.
-    if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
-        
-        [ideasQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
-    }
-    
-    return ideasQuery;
-}
-
-- (void)objectsDidLoad:(NSError *)error {
-    [super objectsDidLoad:error];
-
 }
 
 #pragma mark - ()

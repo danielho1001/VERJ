@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "MTStatusBarOverlay.h"
 
-@interface NewIdeaViewController : UIViewController <UITextViewDelegate>
+@interface NewIdeaViewController : UIViewController <UITextViewDelegate, MTStatusBarOverlayDelegate>
 
 @property (nonatomic, strong) PFObject *project;
 

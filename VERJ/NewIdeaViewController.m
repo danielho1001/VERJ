@@ -10,13 +10,14 @@
 #import "IdeaContentView.h"
 #import "BackButton.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 #import "VerjUtility.h"
 
 @interface NewIdeaViewController()
 @property (nonatomic, strong) UITextView *ideaContentTextView;
 
 @property (nonatomic, assign) UIBackgroundTaskIdentifier ideaPostBackgroundTaskId;
-
+@property (nonatomic, strong) MTStatusBarOverlay *statusBar;
 
 @end
 
@@ -48,6 +49,10 @@
     [self.view addSubview:ideaContentView];
     [self.ideaContentTextView becomeFirstResponder];
     
+    self.statusBar = [MTStatusBarOverlay sharedInstance];
+    self.statusBar.delegate = self;
+    self.statusBar.hidesActivity = YES;
+    
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(newIdea:)];
     [swipe setDirection:(UISwipeGestureRecognizerDirectionUp)];
     [self.ideaContentTextView addGestureRecognizer:swipe];
@@ -59,18 +64,18 @@
     [self.navigationController.navigationBar setBarTintColor:[VerjUtility getVerjOrangeColor]];
 }
 
-#pragma mark - UITextViewDelegate
-
-
 #pragma mark - Selector Methods
 
 -(void)newIdea:(id)sender {
+    if (![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
+        [self.statusBar postMessage:@"Need Internet connection to post idea" duration:2 animated:YES];
+        return;
+    }
     NSString *trimmedComment = [self.ideaContentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if ([trimmedComment length] != 0) {
         //Check if project was created correctly
         if (!self.project) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your idea" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
-            [alert show];
+            [self.statusBar postMessage:@"Couldn't post your idea" duration:2 animated:YES];
             return;
         }
         
@@ -114,8 +119,7 @@
                 self.ideaContentTextView.text = @"";
                 
             } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your idea" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
-                [alert show];
+                [self.statusBar postMessage:@"Couldn't post your idea" duration:2 animated:YES];
             }
             [[UIApplication sharedApplication] endBackgroundTask:self.ideaPostBackgroundTaskId];
         }];

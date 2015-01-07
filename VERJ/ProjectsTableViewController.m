@@ -101,8 +101,6 @@
     [projectsQuery whereKey:ActivityTypeKey equalTo:ActivityTypeProjectCreated];
     [projectsQuery whereKey:ActivityFromUserKey equalTo:[PFUser currentUser]];
 
-    // We create a final compound query that will find all of the photos that were
-    // taken by the user's friends or by the user
     [projectsQuery includeKey:ActivityToProjectKey];
     [projectsQuery orderByDescending:@"updatedAt"];
     
@@ -114,7 +112,6 @@
     //
     // If there is no network connection, we will hit the cache first.
     if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
-//        [self.statusBar postMessage:@"No Internet Connection" duration:2 animated:YES];
         [projectsQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
     }
     return projectsQuery;

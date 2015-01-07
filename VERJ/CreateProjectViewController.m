@@ -29,6 +29,12 @@
 //        [self.view addSubview:self.panelView];
     }
     self.friendsToBeInvited = nil;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 
 }
 
@@ -106,7 +112,11 @@
                 [ACL setPublicReadAccess:YES];
                 projectCreated.ACL = ACL;
                 
-                [projectCreated saveEventually];
+                [projectCreated saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (error) {
+                        NSLog(@"Something went wrong");
+                    }
+                }];
 
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self.delegate sendNewProjectToProjectsTablePage:project];
@@ -130,6 +140,10 @@
 
 -(void)sendFriendsToCreateProjectPage:(NSMutableArray *)friends {
     self.friendsToBeInvited = friends;
+}
+
+-(void)dismissKeyboard {
+    [self.projectNameField resignFirstResponder];
 }
 
 
